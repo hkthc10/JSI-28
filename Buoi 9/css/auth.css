@@ -1,0 +1,15 @@
+body {
+    background-color: #C6EBC5;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.auth-container {
+    max-width: 900px;
+    background-color: #fff;
+}
+
+.shadow-md {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
