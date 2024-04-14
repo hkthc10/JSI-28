@@ -49,7 +49,7 @@ const handleRegister = (event) => {
                 });
             // Alert and switch to log in page
             alert("Sign up successfully!");
-            window.location.pathname = "Checkpoint 2/login.html";
+            window.location.pathname = "Buoi 9/HomePage.html";
             return ;
         })
         .catch((error) => {
