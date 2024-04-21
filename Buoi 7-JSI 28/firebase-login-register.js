@@ -90,6 +90,7 @@ login_btn.addEventListener("submit", function () {
     })
 
     .then(() => {
+      localStorage.setItem("user-list", JSON.stringify(accountList))
       alert("Đăng nhập thành công");
       window.location.href="./home.html"
     })
