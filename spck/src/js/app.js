@@ -1,19 +1,39 @@
 
 // DOM
-let user_data = localStorage.getItem("current_user_data");
-let user_email_span = document.getElementById("email");
 
-if (user_data == "") {
-  user_email_span.innerText = "Chưa có";
-} else {
-  user_data = JSON.parse(user_data);
+let user_data = JSON.parse(localStorage.getItem("current_user_data"));
+
+let subList = document.getElementById("sub-list")
+let subNav = document.getElementById("subnavout")
+if (user_data) {
+  subList.innerHTML =
+    `
+  <div class="sublist header-lr d-flex head-nav-item" id="dropdown">
+
+  <p><span id="display-name"></span></p>
+  <ul class="sub-nav" id="subnavout">
+      <li>
+          <a id="logout">Logout</a>
+      </li>
+  </ul>
+</div>
+  `;
+  let displayNames = document.getElementById("display-name");
   // email
-  user_email_span.innerText = user_data.user_email;
+  displayNames.innerHTML = "E:" + " " + user_data.displayName;
+} else {
+  subList.innerHTML =
+    `
+  <div class="sublist header-lr d-flex head-nav-item" id="dropdown">
+      <a href="./register.html" class="lr-butt items-center d-flex" style="width:auto;">
+          <span>Register</Span>
+      </a>
+          <div class="lr-butt-h items-center d-flex center-lr">/</div>
+      <a href="./login.html" class="lr-butt items-center d-flex" style="width:auto;">
+          <span>Login</Span>
+      </a>
+  </div>
+  `
 }
 
-let sign_btn = document.querySelector("button");
 
-sign_btn.addEventListener("click", function () {
-  localStorage.setItem("current_user_data", "");
-  window.location.reload();
-});

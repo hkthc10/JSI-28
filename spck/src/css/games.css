@@ -1,0 +1,13 @@
+.fr {
+    left: 514px;
+    width: 60px;
+}
+
+.search-bar {
+    margin: 10px 0 20px 500px;
+}
+
+.search-bar input {
+    padding: 5px 300px 5px 10px;
+    border-radius: 3px;
+}

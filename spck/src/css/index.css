@@ -11,13 +11,11 @@
   
   body {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #ff7272;
     
   }
   
   main {
     min-width: 1140px;
-    margin-top: 76px;
   }
   /* flex-box */ 
   /* BEM CSS */

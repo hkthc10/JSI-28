@@ -1,42 +1,47 @@
 // Dùng DOM
 const loginForm = document.querySelector(".login-form");
-let username_login = document.getElementById("email");
+let email_login = document.getElementById("email");
 let password_login = document.getElementById("password");
 let login_btn = document.getElementById("login_btn");
-
-let userList = JSON.parse(localStorage.getItem('user-list'));
-
+      console.log(user.displayName);
 ////////////////////////////////////////////////////////////////////// Đăng nhập 1 tải khoản có sẵn
 const handleLogin = (event) => {
 
   event.preventDefault();
 
-  let username = username_login.value;
+  let email = email_login.value;
   let password = password_login.value;
 
-  firebase.auth().signInWithEmailAndPassword(username, password)
+  firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      const user = userCredential.user;
+      let user = userCredential.user;
 
-      localStorage.setItem("current_user_data",
-        JSON.stringify({
-          user_email: username
-        })
-      );
+      let userSaveLS = {
+        displayName: user.displayName,
+        email: user.email
+      }
+
+      localStorage.setItem("current_user_data",JSON.stringify(userSaveLS));
     })
 
     .then(() => {
-      localStorage.setItem("current-signin-account", JSON.stringify(username));
       alert("Đăng nhập thành công");
-      window.location.pathname = "spck/home.html";
+      window.location.pathname = "index.html";
     })
     .catch((error) => {
       let errorCode = error.code;
       let errorMessage = error.message;
       alert(errorCode + ": " + errorMessage);
-  });
+    });
 }
 
-loginForm.addEventListener("submit", (event) => {
-  handleLogin(event);
-})
+// Kiểm tra trạng thái đăng nhập
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    // Nếu người dùng đã đăng nhập, chuyển hướng đến trang khác
+    window.location.replace("index.html");
+  } else {
+    // Người dùng chưa đăng nhập, tiếp tục xử lý đăng nhập
+    loginForm.addEventListener("submit", handleLogin);
+  }
+});

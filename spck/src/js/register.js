@@ -1,89 +1,78 @@
+
 // DOM
 const registerForm = document.querySelector("#register-form");
-const fullname = document.querySelector("#fullname")
-const email = document.querySelector("#email")
-const dob = document.querySelector("#dob")
-const password = document.querySelector("#password")
+const fullnameIp = document.querySelector("#fullname")
+const emailIp = document.querySelector("#email")
+const passwordIp = document.querySelector("#password")
 const passwordConfirm = document.querySelector("#password-confirm")
-
-let accountList = JSON.parse(localStorage.getItem("user-list")) || [];
 
 // Function
 const handleRegister = (event) => {
     // Prevent from reloading pages
     event.preventDefault();
     // Get data
-    let fullNameData = fullname.value;
-    let emailData = email.value;
-    let dobData = dob.value;
-    let passwordData = password.value;
-    let passwordConfirmData = passwordConfirm.value;
+    const fullname = fullnameIp.value;
+    const email = emailIp.value;
+    const password = passwordIp.value;
+    const passwordComfirm = passwordConfirm.value;
 
     // Validate
-    if (!fullNameData || !emailData || !dobData || !passwordData || !passwordConfirmData) {
+    if (!fullname || !email || !password || !passwordComfirm) {
         alert("Fill all field!");
         return;
     }
 
-    if (passwordData != passwordConfirmData) {
+    if (password != passwordComfirm) {
         alert("Wrong confirm password!");
         return;
     }
 
-    let accountData = {
-        fullNameData,
-        dobData,
-        emailData,
-        passwordData,
-        passwordConfirmData,
-    };
-
-    accountList.push(accountData)
-
-
-
-
     // Register script
 
-    firebase.auth().createUserWithEmailAndPassword(emailData, passwordData)
+    auth.createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
             // Signed in 
-            const user = userCredential.user;
+            let user = userCredential.user;
+            
+            let userSaveLS = {
+                displayName: user.displayName,
+                email: user.email,
+              }
 
-            localStorage.setItem("current_user_data",
-                JSON.stringify({
-                    user_email: emailData
-                })
-            );
-            // Save data into Firebase
-            db.collection("users")
-                .add({
-                    fullNameData,
-                    emailData,
-                    dobData,
-                    passwordData,
-                })
-                .then((docRef) => {
-                    localStorage.setItem("user-list", JSON.stringify(accountList))
-                    console.log("Document written with ID: ", docRef.id);
-                })
-                .catch((error) => {
-                    console.error("Error adding document: ", error);
-                });
+            //Post to localstorage
+            localStorage.setItem("current_user_data", JSON.stringify(userSaveLS));
             // Alert and switch to log in page
-
-            alert("Sign up successfully!");
-            window.location.pathname = "spck/home.html";
-            return;
+            alert("Sign up successfully!")
+        })
+    // Save data into Firebase
+    db.collection("users").add({
+        displayName: fullname,
+        email: email,
+        password: password
+    })
+        .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
         })
         .catch((error) => {
             let errorCode = error.code;
             let errorMessage = error.message;
             alert(errorCode + ": " + errorMessage);
-        });
+        })
 }
-// Main script
 
-registerForm.addEventListener("submit", (event) => {
-    handleRegister(event);
-})
+auth.onAuthStateChanged((user) => {
+    if (!user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/v8/firebase.User
+        registerForm.addEventListener("submit", handleRegister);
+        // ...
+    } else {
+        // User is signed out
+        // ...
+
+        window.location.href = "index.html";
+    }
+});
