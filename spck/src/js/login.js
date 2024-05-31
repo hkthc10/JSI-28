@@ -3,7 +3,6 @@ const loginForm = document.querySelector(".login-form");
 let email_login = document.getElementById("email");
 let password_login = document.getElementById("password");
 let login_btn = document.getElementById("login_btn");
-      console.log(user.displayName);
 ////////////////////////////////////////////////////////////////////// Đăng nhập 1 tải khoản có sẵn
 const handleLogin = (event) => {
 
@@ -14,14 +13,10 @@ const handleLogin = (event) => {
 
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      let user = userCredential.user;
+      var user = userCredential.user;
 
-      let userSaveLS = {
-        displayName: user.displayName,
-        email: user.email
-      }
-
-      localStorage.setItem("current_user_data",JSON.stringify(userSaveLS));
+      // Lưu thông tin user vào Localtorage
+      localStorage.setItem('current_user_data', JSON.stringify(user.email))
     })
 
     .then(() => {

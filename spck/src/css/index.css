@@ -1,37 +1,94 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  
-  .container {
-    min-width: 1140px;
-  }
-  
-  body {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
-  }
-  
-  main {
-    min-width: 1140px;
-  }
-  /* flex-box */ 
-  /* BEM CSS */
-  /* TailwindCSS */
-  .d-flex {
-    display: flex;
-  }
-  
-  .justify-between {
-    justify-content: space-between;
-  }
-  
-  .items-center {
-    align-items: center;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .justify-center {
-    justify-content: center;
+
+.container {
+  min-width: 1140px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+main {
+  min-width: 1140px;
+}
+
+/* flex-box */
+/* BEM CSS */
+/* TailwindCSS */
+.d-flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+/* Hide scrollbar while loading */
+body.loading {
+  overflow: hidden;
+}
+
+/* Loading Screen Styles */
+#loading-screen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  padding: 600px 0 0 1000px;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+#loading-screen img {
+  width: 500px;
+  /* Adjust the size of the loading gif */
+}
+
+#dark {
+  display: none;
+}
+
+
+/* Về đầu trang */
+#toTopBtn {
+  display: none; 
+  position: fixed; 
+  bottom: 50px; 
+  right: 50px; 
+  z-index: 99; 
+  background-color: #878787; 
+  color: white; 
+  border: none; 
+  cursor: pointer; 
+  padding: 20px; 
+  font-size: 16px; 
+  transition: background-color 0.3s; 
+}
+
+#toTopBtn:hover {
+  background-color: #0056b3; 
+}
+
+@media screen and (max-width: 600px) {
+  #toTopBtn {
+      right: 10px; 
+      bottom: 10px; 
+      padding: 10px; 
   }
+}

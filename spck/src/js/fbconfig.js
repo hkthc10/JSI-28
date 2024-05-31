@@ -10,11 +10,11 @@ const firebaseConfig = {
   measurementId: "G-1TJ2H1XN26"
 };
   
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  
-  // Initialize Firebase Authentication and get a reference to the service
-  const auth = firebase.auth();
-  
-  // Initialize Cloud Firestore and get a reference to the service
-  const db = firebase.firestore();
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Initialize Firebase Authentication and get a reference to the service
+const auth = firebase.auth();
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = firebase.firestore();

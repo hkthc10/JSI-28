@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./src/css/index.css">
     <link rel="stylesheet" href="./src/css/games.css">
     <link rel="stylesheet" href="./src/css/navbar.css">
-    <link rel="stylesheet" href="./src/css/games-menu.css">
+    <link rel="stylesheet" href="./src/css/games-upload.css">
     <link rel="stylesheet" href="./src/css/foot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
         integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
@@ -21,14 +21,16 @@
 </head>
 
 <body class="loading">
+
     <!-- Loading Screen -->
     <div id="loading-screen">
         <img src="./src/img/LoadingScreen-ezgif.com-speed.gif" alt="Loading...">
     </div>
 
-    <!-- Start Container -->
+    <!-- Container -->
     <div class="container">
-        <!-- Start Header -->
+
+        <!-- Header -->
         <header>
             <div class="header-logo">
                 <h1>Linia</h1>
@@ -37,45 +39,53 @@
                 <div id="menu" class="head-nav">
                     <a href="./index.html" class="head-nav-item d-flex">Home</a>
                     <a href="./contact.html" class="head-nav-item d-flex">Contact</a>
-                    <a href="./games.html" class="head-nav-item d-flex now">Games</a>
-                    <div class="fr"></div>
+                    <a href="./games.html" class="head-nav-item d-flex">Games</a>
                 </div>
             </nav>
-            <div class="search-bar">
-                <div class="autocomplete-container">
-                    <input type="text" placeholder="Search..." id="search-game" autocomplete="off"
-                        onkeyup="filterGames()">
-                </div>
-            </div>
             <div id="sub-list"></div>
-            <button class="menu-tags-game" id="ap"><img src="./src/img/menugame.png" alt=""></button>
         </header>
         <!-- End Header -->
 
-        <!-- Start Main -->
+        <!-- Main -->
         <main>
             <div class="game-menu">
-                <div class="menu-container">
-                    <p>Tag Search</p>
-                    <input type="checkbox" id="adventure" onclick="updateSearchBar()">
-                    <p>Adventure</p>
-                    <input type="checkbox" id="horror" onclick="updateSearchBar()">
-                    <p>Horror</p>
-                    <input type="checkbox" id="roguelike" onclick="updateSearchBar()">
-                    <p>RogueLike</p>
+                <div class="container">
+                    <h1>Thêm bài viết: </h1>
+                    <form id="game-form">
+                        <label for="game-title">Title</label>
+                        <input class="edit" type="text" id="game-title" placeholder="Title...">
+
+                        <label for="game-image">Image-Path</label>
+                        <input class="edit" type="text" id="game-image" placeholder="Image path...">
+
+                        <label for="game-tags">Tags</label>
+                        <div class="autocomplete-container">
+                            <input class="edit" type="text" id="game-tags" placeholder="Tags..." autocomplete="off">
+                        </div>
+
+                        <label for="game-content">Content</label>
+                        <textarea class="edit" id="game-content" placeholder="Content..."></textarea>
+
+                        <button class="edit-btn" type="submit">Add game</button>
+                    </form>
+
+                    <div id="games-container" class="flex"></div>
+
+                    <div class="overlay" onclick="closePopup()"></div>
+                    <div class="popup">
+                        <h2>Edit game</h2>
+                        <form id="edit-form">
+                            <input type="hidden" id="edit-game-id">
+                            <input class="edit" type="text" id="edit-title" placeholder="Title" required>
+                            <input class="edit" type="text" id="edit-image" placeholder="Image URL" required>
+                            <input class="edit" type="text" id="edit-tags" placeholder="Tags" required>
+                            <textarea class="edit" type="text" id="edit-content" placeholder="Content"
+                                required></textarea>
+                            <button class="edit-btn" type="submit">Save Changes</button>
+                            <button class="edit-btn" type="button" onclick="closePopup()">Cancel</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="owl-carousel owl-theme">
-                <div class="item"><img src="https://img.pikbest.com/origin/06/39/82/47ppIkbEsT7dJ.jpg!w700wp" alt="">
-                </div>
-                <div class="item"><img src="https://img.pikbest.com/origin/06/39/82/47ppIkbEsT7dJ.jpg!w700wp" alt="">
-                </div>
-                <div class="item"><img src="https://img.pikbest.com/origin/06/39/82/47ppIkbEsT7dJ.jpg!w700wp" alt="">
-                </div>
-            </div>
-            <div id="games-container" class="flex"></div>
-            <div id="loadmore">
-                <p>LoadMore</p>
             </div>
         </main>
         <!-- End Main -->
@@ -90,7 +100,7 @@
                     <div>
                         <a href="#">Chính Sách Về Quyền Riêng Tư</a>
                         <a href="#">Điều Khoản Dịch Vụ</a>
-                        <a href="#">Giới Thiệu Công Ty</a>
+                        <a href="./about.html">Giới Thiệu Công Ty</a>
                         <a href="#">Liên Hệ Chúng Tôi</a>
                     </div>
 
@@ -121,9 +131,8 @@
         <!-- To the top button -->
         <button onclick="scrollToTop()" id="toTopBtn" title="Go to top">Top</button>
     </div>
-    <!-- End Container -->
 
-    <!-- Link FireBase -->
+    <!-- Link Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore-compat.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.0/firebase-auth-compat.min.js"
@@ -134,44 +143,10 @@
     <script src="./src/js/fbconfig.js"></script>
     <script src="./src/js/app.js"></script>
     <script src="./src/js/signout.js"></script>
-    <script src="./src/js/render-games.js"></script>
-    <script src="./src/js/search.js"></script>
-
-    <!-- Script owlcarousel -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
-        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./src/js/main.js"></script>
+    <script src="./src/js/hint-tags.js"></script>
 </body>
 <script>
-    // OwlCarousel
-    $('.owl-carousel').owlCarousel({
-        autoplay: true,
-        autoplayTimeout: 8000,
-        nav: true,
-        loop: true,
-        margin: 100,
-        dots: true,
-        autoWidth: true,
-        center: true,
-        responsive: {
-            0: {
-                items: 1
-            },
-        }
-    });
-    $('.owl-carousel').css("padding", "90px 420px 10px 420px");
-
-    // Bật Menu
-    const add_game = document.querySelector('#ap');
-    const gameMenu = document.querySelector('.game-menu');
-    add_game.addEventListener('click', function () {
-        gameMenu.classList.toggle("game-menu-toggle");
-        gameMenu.classList.toggle("anm-game-menu")
-    })
-
     // Nút dropdown
     const drdown = document.querySelector('#dropdown');
     const menu = document.querySelector('.sub-nav');

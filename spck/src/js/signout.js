@@ -14,5 +14,10 @@ const handleLogout = () => {
 };
 
 logoutBtn.addEventListener("click", () => {
-  handleLogout();
+  if (confirm("Are you want to logout ?") == true) {
+    handleLogout();
+  } else {
+    return
+  }
+
 });

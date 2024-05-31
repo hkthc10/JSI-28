@@ -4,64 +4,64 @@ const registerForm = document.querySelector("#register-form");
 const fullnameIp = document.querySelector("#fullname")
 const emailIp = document.querySelector("#email")
 const passwordIp = document.querySelector("#password")
-const passwordConfirm = document.querySelector("#password-confirm")
+const passwordConfirmIp = document.querySelector("#password-confirm")
 
 // Function
 const handleRegister = (event) => {
-    // Prevent from reloading pages
+    // Prevent form from reloading page
     event.preventDefault();
+
     // Get data
     const fullname = fullnameIp.value;
     const email = emailIp.value;
     const password = passwordIp.value;
-    const passwordComfirm = passwordConfirm.value;
+    const passwordConfirm = passwordConfirmIp.value;
 
     // Validate
-    if (!fullname || !email || !password || !passwordComfirm) {
-        alert("Fill all field!");
+    if (!fullname || !email || !password || !passwordConfirm) {
+        alert("Fill in all fields!");
         return;
     }
 
-    if (password != passwordComfirm) {
-        alert("Wrong confirm password!");
+    if (password !== passwordConfirm) {
+        alert("Passwords do not match!");
         return;
     }
 
-    // Register script
+    let creationTime;
 
+    // Register user with Firebase authentication
     auth.createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
-            // Signed in 
+            // User signed in
             let user = userCredential.user;
-            
-            let userSaveLS = {
-                displayName: user.displayName,
-                email: user.email,
-              }
+            creationTime = user.metadata.creationTime;
 
-            //Post to localstorage
-            localStorage.setItem("current_user_data", JSON.stringify(userSaveLS));
-            // Alert and switch to log in page
-            alert("Sign up successfully!")
+            // Store user data in localStorage
+            localStorage.setItem("current_user_data", JSON.stringify(user.email));
+
+            // Alert and switch to login page
+            alert("Signed up successfully!");
         })
-    // Save data into Firebase
-    db.collection("users").add({
-        displayName: fullname,
-        email: email,
-        password: password
-    })
+        .then(() => {
+            // Save user data into Firebase
+            return db.collection("users").add({
+                displayName: fullname, // Display Name
+                email: email, // Email
+                password: password, // Password - Note: This is not recommended for security reasons, consider removing this line.
+                creationTime: creationTime // Account Creation Time
+            });
+        })
         .then((docRef) => {
             console.log("Document written with ID: ", docRef.id);
         })
         .catch((error) => {
-            console.error("Error adding document: ", error);
-        })
-        .catch((error) => {
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            alert(errorCode + ": " + errorMessage);
-        })
+            // Handle errors
+            console.error("Error: ", error);
+            alert("Error: " + error.message);
+        });
 }
+
 
 auth.onAuthStateChanged((user) => {
     if (!user) {
@@ -72,7 +72,7 @@ auth.onAuthStateChanged((user) => {
     } else {
         // User is signed out
         // ...
-
+        auth.signOut()
         window.location.href = "index.html";
     }
 });
