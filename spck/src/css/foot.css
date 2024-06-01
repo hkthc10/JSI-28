@@ -1,10 +1,9 @@
 .foot {
-    background-color: #000000dc;
+    min-width: 1300px;
   }
   
   .foot-item {
     padding: 30px 0 40px;
-    color: #ffffff;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
@@ -33,7 +32,6 @@
   .foot-pt a {
     text-decoration: none;
     margin: 10px;
-    color: #ffffff;
   }
   
   .foot-pt img {

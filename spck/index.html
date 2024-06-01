@@ -12,64 +12,73 @@
     <link rel="stylesheet" href="./src/css/foot.css">
 </head>
 
-<body>
+<body class="loading">
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <img src="./src/img/LoadingScreen-ezgif.com-speed.gif" alt="Loading...">
+    </div>
+
     <!-- Container -->
     <div class="container">
 
-        <!-- Header -->
-        <header>
+        <!-- Bắt Đầu Header -->
+        <header class="h-change">
             <div class="header-logo">
-                <h1>Linia</h1>
+                <img class="dark" src="./src/img/Logo Dark.png" alt="">
+                <img class="light" src="./src/img/Logo Light.png" alt="">
             </div>
             <nav class="navbar header-nav d-flex">
                 <div id="menu" class="head-nav">
-                    <a href="./index.html" class="head-nav-item d-flex now">Home</a>
-                    <a href="./contact.html" class="head-nav-item d-flex">Contact</a>
-                    <a href="./games.html" class="head-nav-item d-flex">Games</a>
+                    <a href="./index.html" class="head-nav-item d-flex now reverse">Home</a>
+                    <a href="./contact.html" class="head-nav-item d-flex reverse">Contact</a>
+                    <a href="./games.html" class="head-nav-item d-flex reverse">Games</a>
                     <div class="fr"></div>
                 </div>
             </nav>
-            <div id="sub-list">
+            <div id="sub-list"></div>
 
-            </div>
+            <!-- Hai hình ảnh cần thay đổi -->
+            <img id="dark" class="change-mode" src="./src/img/Change Light.png" draggable="false" alt="Dark Mode"
+                onclick="switchImages('white')">
+            <img id="light" class="change-mode" src="./src/img/Change Dark.png" draggable="false" alt="Light Mode"
+                onclick="switchImages('black')">
         </header>
         <!-- End header -->
 
         <!-- Main -->
         <main>
             <div class="intro">
-                <img src="https://st4.depositphotos.com/1194063/20120/i/450/depositphotos_201203326-stock-photo-attractive-pineapples-stylish-sunglasses-sand.jpg"
-                    alt="">
+                <img class="idark" src="./src/img/a.gif">
+                <img class="ilight" src="./src/img/b.gif" alt="">
             </div>
             <div class="game-category">
                 <div class="game-section">
                     <a href="games.html"></a>
                 </div>
-                <nav class="list-food d-flex">
-
-                </nav>
-                <div class="d-flex more-border">
-                    <a href="./shop.html" class="d-flex more">Xem Thêm</a>
-                </div>
+            </div>
+            <div id="games-container"></div>
+            <div class="more-btn">
+                <a class="" href="./games.html">More</a>
             </div>
         </main>
         <!-- end main -->
 
         <!-- footer -->
-        <footer class="foot">
+        <footer class="foot f-change">
             <div class="foot-item d-flex">
                 <div class="foot-pt">
                     <div class="imgfoot">
                         <img src="" alt="">
                     </div>
                     <div>
-                        <a href="#">Chính Sách Về Quyền Riêng Tư</a>
-                        <a href="#">Điều Khoản Dịch Vụ</a>
-                        <a href="./about.html">Giới Thiệu Công Ty</a>
-                        <a href="#">Liên Hệ Chúng Tôi</a>
+                        <a class="reverse" href="#">Chính Sách Về Quyền Riêng Tư</a>
+                        <a class="reverse" href="#">Điều Khoản Dịch Vụ</a>
+                        <a class="reverse" href="#">Giới Thiệu Công Ty</a>
+                        <a class="reverse" href="#">Liên Hệ Chúng Tôi</a>
                     </div>
 
-                    <div style="line-height: 1.6;">
+                    <div class="reverse" style="line-height: 1.6;">
                         <p style="white-space: pre-wrap;">
                             "PlayStation Family Mark," "PS5 logo" and "PS4 logo" are registered trademarks or trademarks
                             of Sony
@@ -85,7 +94,7 @@
                     <div class="imgfoot">
                         <img src="" alt="">
                     </div>
-                    <div>
+                    <div class="reverse">
                         Copyright © COGNOSPHERE. All Rights Reserved.
                     </div>
                 </div>
@@ -105,6 +114,7 @@
     <!-- Main Script -->
     <script src="./src/js/fbconfig.js"></script>
     <script src="./src/js/app.js"></script>
+    <script src="./src/js/home.js"></script>
     <script src="./src/js/signout.js"></script>
 
 </body>
@@ -117,6 +127,15 @@
         menu.classList.toggle("active");
     })
 
+    // Ẩn màn hình loading sau 3 giây
+    window.addEventListener('load', function () {
+        setTimeout(function () {
+            var loadingScreen = document.getElementById('loading-screen');
+            loadingScreen.style.display = 'none';
+            // Khôi phục thanh cuộn
+            document.body.classList.remove('loading');
+        }, 2000);
+    });
 </script>
 
 </html>

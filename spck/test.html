@@ -16,11 +16,11 @@
 
 <h1>Create HTML with JavaScript</h1>
 
-<button onclick="createHTML()">Create</button>
+<button onclick="createAndOpenHTML()">Create</button>
 
 <script>
-    function createHTML() {
-        // Tạo nội dung của trang HTML mới
+    function createAndOpenHTML() {
+        // HTML content for the new page
         var htmlContent = `
             <!DOCTYPE html>
             <html lang="en">
@@ -38,19 +38,15 @@
             </head>
             <body>
                 <h1>New Page</h1>
-                <p>This is a dynamically created HTML page using JavaScript.</p>
+                <p>This is a dynamically created HTML page opened in a new tab.</p>
             </body>
             </html>
         `;
-
-        // Tạo một blob từ nội dung HTML
-        var blob = new Blob([htmlContent], { type: 'text/html' });
-
-        // Tạo URL cho blob
-        var url = URL.createObjectURL(blob);
-
-        // Mở URL trong một tab mới
-        window.open(url, '_blank');
+        
+        // Open the new page in a new tab
+        var newWindow = window.open();
+        newWindow.document.write(htmlContent);
+        newWindow.document.close();
     }
 </script>
 

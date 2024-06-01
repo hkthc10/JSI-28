@@ -17,7 +17,7 @@ h3 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-top: 10px;
+    margin: 10px 0;
 }
 
 /* Biểu mẫu chỉnh sửa (Edit Form) */
@@ -30,30 +30,6 @@ h3 {
 .edit {
     padding: 7px 2px;
     margin: 5px 0;
-}
-
-/* Danh sách trò chơi (Games Container) */
-#games-container {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 40px 200px 100px 200px;
-}
-
-#games-container .game {
-    padding: 30px;
-    margin: 10px auto;
-    border: 1px solid black;
-    cursor: pointer;
-    width: 30%;
-}
-
-#games-container .game img {
-    border: 1px solid white;
-    width: 100%;
-    padding: 0px;
-    height: 200px;
-    object-fit: cover;
-    transition: all 1s;
 }
 
 /* Biểu mẫu trò chơi (Game Form) */

@@ -29,18 +29,24 @@
     <!-- Start Container -->
     <div class="container">
         <!-- Start Header -->
-        <header>
+        <header class="h-change">
             <div class="header-logo">
-                <h1>Linia</h1>
+                <img class="dark" src="./src/img/Logo Dark.png" alt="">
+                <img class="light" src="./src/img/Logo Light.png" alt="">
             </div>
             <nav class="navbar header-nav d-flex">
                 <div id="menu" class="head-nav">
-                    <a href="./index.html" class="head-nav-item d-flex">Home</a>
-                    <a href="./contact.html" class="head-nav-item d-flex">Contact</a>
-                    <a href="./games.html" class="head-nav-item d-flex now">Games</a>
+                    <a href="./index.html" class="head-nav-item d-flex reverse">Home</a>
+                    <a href="./contact.html" class="head-nav-item d-flex reverse">Contact</a>
+                    <a href="./games.html" class="head-nav-item d-flex now reverse">Games</a>
                     <div class="fr"></div>
                 </div>
             </nav>
+            <!-- Hai hình ảnh cần thay đổi -->
+            <img id="dark" class="change-mode" src="./src/img/Change Light.png" draggable="false" alt="Dark Mode"
+                onclick="switchImages('white')">
+            <img id="light" class="change-mode" src="./src/img/Change Dark.png" draggable="false" alt="Light Mode"
+                onclick="switchImages('black')">
             <div class="search-bar">
                 <div class="autocomplete-container">
                     <input type="text" placeholder="Search..." id="search-game" autocomplete="off"
@@ -48,7 +54,10 @@
                 </div>
             </div>
             <div id="sub-list"></div>
-            <button class="menu-tags-game" id="ap"><img src="./src/img/menugame.png" alt=""></button>
+            <button class="menu-tags-game bg-reverse" id="ap">
+                <img id="menu-dark" src="./src/img/menu add post.png" alt="">
+                <img id="menu-light" src="./src/img/menugame.png" alt="">
+            </button>
         </header>
         <!-- End Header -->
 
@@ -56,13 +65,19 @@
         <main>
             <div class="game-menu">
                 <div class="menu-container">
-                    <p>Tag Search</p>
-                    <input type="checkbox" id="adventure" onclick="updateSearchBar()">
-                    <p>Adventure</p>
-                    <input type="checkbox" id="horror" onclick="updateSearchBar()">
-                    <p>Horror</p>
-                    <input type="checkbox" id="roguelike" onclick="updateSearchBar()">
-                    <p>RogueLike</p>
+                    <h3>Tag Search</h3>
+                    <div class="d-flex">
+                        <input type="checkbox" id="adventure" onclick="updateSearchBar()">
+                        <p>Adventure</p>
+                    </div>
+                    <div class="d-flex">
+                        <input type="checkbox" id="horror" onclick="updateSearchBar()">
+                        <p>Horror</p>
+                    </div>
+                    <div class="d-flex">
+                        <input type="checkbox" id="roguelike" onclick="updateSearchBar()">
+                        <p>RogueLike</p>
+                    </div>
                 </div>
             </div>
             <div class="owl-carousel owl-theme">
@@ -81,20 +96,20 @@
         <!-- End Main -->
 
         <!-- Start Footer -->
-        <footer class="foot">
+        <footer class="foot  f-change">
             <div class="foot-item d-flex">
                 <div class="foot-pt">
                     <div class="imgfoot">
                         <img src="" alt="">
                     </div>
                     <div>
-                        <a href="#">Chính Sách Về Quyền Riêng Tư</a>
-                        <a href="#">Điều Khoản Dịch Vụ</a>
-                        <a href="#">Giới Thiệu Công Ty</a>
-                        <a href="#">Liên Hệ Chúng Tôi</a>
+                        <a class="reverse" href="#">Chính Sách Về Quyền Riêng Tư</a>
+                        <a class="reverse" href="#">Điều Khoản Dịch Vụ</a>
+                        <a class="reverse" href="#">Giới Thiệu Công Ty</a>
+                        <a class="reverse" href="#">Liên Hệ Chúng Tôi</a>
                     </div>
 
-                    <div style="line-height: 1.6;">
+                    <div class="reverse" style="line-height: 1.6;">
                         <p style="white-space: pre-wrap;">
                             "PlayStation Family Mark," "PS5 logo" and "PS4 logo" are registered trademarks or trademarks
                             of Sony
@@ -110,7 +125,7 @@
                     <div class="imgfoot">
                         <img src="" alt="">
                     </div>
-                    <div>
+                    <div class="reverse">
                         Copyright © COGNOSPHERE. All Rights Reserved.
                     </div>
                 </div>

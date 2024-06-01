@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>News</title>
+  <title>Contact</title>
   <link rel="icon" href="">
   <link rel="stylesheet" href="./src/css/index.css">
-  <link rel="stylesheet" href="./src/css/news.css ">
+  <link rel="stylesheet" href="./src/css/contact.css ">
   <link rel="stylesheet" href="./src/css/navbar.css">
   <link rel="stylesheet" href="./src/css/foot.css">
 </head>
@@ -16,24 +16,27 @@
   <!-- Start container -->
   <div class="container">
 
-    <!-- Start Header -->
-    <header class="changeable">
+    <!-- Bắt Đầu Header -->
+    <header class="h-change">
       <div class="header-logo">
-        <h1>Linia</h1>
+        <img class="dark" src="./src/img/Logo Dark.png" alt="">
+        <img class="light" src="./src/img/Logo Light.png" alt="">
       </div>
       <nav class="navbar header-nav d-flex">
         <div id="menu" class="head-nav">
-          <a href="./index.html" class="head-nav-item d-flex">Home</a>
-          <a href="./contact.html" class="head-nav-item d-flex now">Contact</a>
-          <a href="./games.html" class="head-nav-item d-flex navdown">Games</a>
+          <a href="./index.html" class="head-nav-item d-flex reverse">Home</a>
+          <a href="./contact.html" class="head-nav-item d-flex now reverse">Contact</a>
+          <a href="./games.html" class="head-nav-item d-flex reverse">Games</a>
           <div class="fr"></div>
         </div>
       </nav>
-      <div id="sub-list">
-        <!-- Hai hình ảnh cần thay đổi -->
-        <img id="dark" src="./src/img/Change Light.png" alt="Dark Mode" onclick="switchImages('white')">
-        <img id="light" src="./src/img/Change Dark.png" alt="Light Mode" onclick="switchImages('black')">
-      </div>
+      <div id="sub-list"></div>
+      <!-- Hai hình ảnh cần thay đổi -->
+      <img id="dark" class="change-mode" src="./src/img/Change Light.png" draggable="false" alt="Dark Mode"
+        onclick="switchImages('white')">
+      <img id="light" class="change-mode" src="./src/img/Change Dark.png" draggable="false" alt="Light Mode"
+        onclick="switchImages('black')">
+
     </header>
     <!-- End Header -->
 
@@ -41,58 +44,50 @@
     <main>
       <div class="form-item">
         <div class="form">
-          <h1>Feedback</h1>
-          <form>
+          <h3>Feedback</h3>
+          <form class="d-flex" id="form-contact">
             <div class="row">
-              <div class="row1">
-                <input type="text" name="fname" class="form-con" placeholder="First Name">
-              </div>
-              <div class="row1">
-                <input type="text" name="lname" class="form-con" placeholder="Last Name">
-              </div>
+              <label for="contact-name">Name</label>
+              <input class="contact" id="contact-name" type="text" placeholder="Your name...">
             </div>
+          
             <div class="row">
-              <div class="row2">
-                <input type="text" name="email" class="form-con" placeholder="Email">
-              </div>
+              <label for="contact-email">Email</label>
+              <input class="contact" id="contact-email" type="email" placeholder="Your email...">
             </div>
+          
             <div class="row">
-              <div class="row2">
-                <input type="tel" name="phone-number" class="form-con" placeholder="Phone Number">
-              </div>
+              <label for="contact-subject">Subject</label>
+              <input class="contact" id="contact-subject" type="text" placeholder="Subject...">
             </div>
+          
             <div class="row">
-              <div class="row2">
-                <textarea name="message" class="form-con" placeholder="Write Your Message" id="message" cols="30"
-                  rows="7"></textarea>
-              </div>
+              <label for="contact-message">Message</label>
+              <textarea class="contact" id="contact-message" placeholder="Your message..."></textarea>
             </div>
-            <div class="row">
-              <div class="row2">
-                <input type="submit" value="Send Feedback" class="feed">
-              </div>
-            </div>
-          </form>
+          
+            <button class="contact-btn" type="submit">Send Message</button>
+          </form>          
         </div>
       </div>
     </main>
     <!-- End Main -->
 
     <!-- Start Footer -->
-    <footer class="foot">
+    <footer class="foot f-change">
       <div class="foot-item d-flex">
         <div class="foot-pt">
           <div class="imgfoot">
             <img src="" alt="">
           </div>
           <div>
-            <a href="#">Chính Sách Về Quyền Riêng Tư</a>
-            <a href="#">Điều Khoản Dịch Vụ</a>
-            <a href="./about.html">Giới Thiệu Công Ty</a>
-            <a href="#">Liên Hệ Chúng Tôi</a>
+            <a class="reverse" href="#">Chính Sách Về Quyền Riêng Tư</a>
+            <a class="reverse" href="#">Điều Khoản Dịch Vụ</a>
+            <a class="reverse" href="#">Giới Thiệu Công Ty</a>
+            <a class="reverse" href="#">Liên Hệ Chúng Tôi</a>
           </div>
 
-          <div style="line-height: 1.6;">
+          <div class="reverse" style="line-height: 1.6;">
             <p style="white-space: pre-wrap;">
               "PlayStation Family Mark," "PS5 logo" and "PS4 logo" are registered trademarks or trademarks
               of Sony
@@ -108,13 +103,17 @@
           <div class="imgfoot">
             <img src="" alt="">
           </div>
-          <div>
+          <div class="reverse">
             Copyright © COGNOSPHERE. All Rights Reserved.
           </div>
         </div>
       </div>
     </footer>
     <!-- End Footer -->
+
+    <!-- To the top button -->
+    <button onclick="scrollToTop()" id="toTopBtn" title="Go to top">Top</button>
+
 
   </div>
   <!-- End Container -->
@@ -129,6 +128,7 @@
   <!-- Main Script -->
   <script src="./src/js/fbconfig.js"></script>
   <script src="./src/js/app.js"></script>
+  <script src="./src/js/contact.js"></script>
   <script src="./src/js/signout.js"></script>
 </body>
 
@@ -139,7 +139,7 @@
 
   drdown.addEventListener('click', function () {
     menu.classList.toggle("active");
-  });
+  })
 
   // Hàm cuộn đến đầu trang của trang
   function scrollToTop() {
@@ -158,17 +158,6 @@
       toTopButton.style.display = "none";
     }
   });
-
-  // Ẩn màn hình loading sau 3 giây
-  window.addEventListener('load', function () {
-    setTimeout(function () {
-      var loadingScreen = document.getElementById('loading-screen');
-      loadingScreen.style.display = 'none';
-      // Khôi phục thanh cuộn
-      document.body.classList.remove('loading');
-    }, 2000);
-  });
-</script>
 </script>
 
 </html>

@@ -1,6 +1,5 @@
 const gamesContainer = document.querySelector("#games-container");
 const gameForm = document.querySelector("#game-form");
-const editGameBtn = document.querySelector('.edit-game');
 const editModal = document.querySelector('.popup');
 const editForm = document.querySelector("#edit-form");
 

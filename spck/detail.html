@@ -20,49 +20,54 @@
 
     <!-- Bắt Đầu Container -->
     <div class="container">
+
         <!-- Bắt Đầu Header -->
-        <header class="changeable">
+        <header class="h-change">
             <div class="header-logo">
-                <h1>Linia</h1>
+                <img class="dark" src="./src/img/Logo Dark.png" alt="">
+                <img class="light" src="./src/img/Logo Light.png" alt="">
             </div>
             <nav class="navbar header-nav d-flex">
                 <div id="menu" class="head-nav">
-                    <a href="./index.html" class="head-nav-item d-flex reverse">Trang Chủ</a>
-                    <a href="./contact.html" class="head-nav-item d-flex reverse">Liên Hệ</a>
-                    <a href="./games.html" class="head-nav-item d-flex now reverse">Trò Chơi</a>
+                    <a href="./index.html" class="head-nav-item d-flex reverse">Home</a>
+                    <a href="./contact.html" class="head-nav-item d-flex reverse">Contact</a>
+                    <a href="./games.html" class="head-nav-item d-flex reverse">Games</a>
                     <div class="fr"></div>
                 </div>
             </nav>
             <div id="sub-list"></div>
+            
             <!-- Hai hình ảnh cần thay đổi -->
-            <img id="dark" src="./src/img/Change Light.png" alt="Dark Mode" onclick="switchImages('white')">
-            <img id="light" src="./src/img/Change Dark.png" alt="Light Mode" onclick="switchImages('black')">
+            <img id="dark" class="change-mode" src="./src/img/Change Light.png" draggable="false" alt="Dark Mode"
+                onclick="switchImages('white')">
+            <img id="light" class="change-mode" src="./src/img/Change Dark.png" draggable="false" alt="Light Mode"
+                onclick="switchImages('black')">
         </header>
         <!-- Kết Thúc Header -->
 
         <!-- Main -->
         <main>
-            <div id="detail-container">
+            <div id="detail-container" class="bg-changeable">
                 <!-- Nội dung chi tiết sẽ được hiển thị ở đây -->
             </div>
         </main>
         <!-- Kết thúc main -->
 
         <!-- Start Footer -->
-        <footer class="foot">
+        <footer class="foot f-change">
             <div class="foot-item d-flex">
                 <div class="foot-pt">
                     <div class="imgfoot">
                         <img src="" alt="">
                     </div>
                     <div>
-                        <a href="#">Chính Sách Về Quyền Riêng Tư</a>
-                        <a href="#">Điều Khoản Dịch Vụ</a>
-                        <a href="#">Giới Thiệu Công Ty</a>
-                        <a href="#">Liên Hệ Chúng Tôi</a>
+                        <a class="reverse" href="#">Chính Sách Về Quyền Riêng Tư</a>
+                        <a class="reverse" href="#">Điều Khoản Dịch Vụ</a>
+                        <a class="reverse" href="#">Giới Thiệu Công Ty</a>
+                        <a class="reverse" href="#">Liên Hệ Chúng Tôi</a>
                     </div>
 
-                    <div style="line-height: 1.6;">
+                    <div class="reverse" style="line-height: 1.6;">
                         <p style="white-space: pre-wrap;">
                             "PlayStation Family Mark," "PS5 logo" and "PS4 logo" are registered trademarks or trademarks
                             of Sony
@@ -78,7 +83,7 @@
                     <div class="imgfoot">
                         <img src="" alt="">
                     </div>
-                    <div>
+                    <div class="reverse">
                         Copyright © COGNOSPHERE. All Rights Reserved.
                     </div>
                 </div>
@@ -91,6 +96,26 @@
 
     </div>
 
+    <script>
+        // Lấy các tham số truy vấn
+        const queryParams = new URLSearchParams(window.location.search);
+        const gameId = queryParams.get('id');
+        const author = queryParams.get('author');
+        const imgPath = queryParams.get('imgPath');
+        const title = queryParams.get('title');
+        const content = queryParams.get('content');
+
+        // Display detailed content
+        const detailContainer = document.getElementById('detail-container');
+        detailContainer.innerHTML = `
+            <div class="con-detail m-change">
+                <h3 class="changeable">Tác Giả: ${author}</h3>
+                <h3 class="changeable">Tiêu Đề: ${title}</h3>
+                <img src="${imgPath}" alt="Hình Ảnh Trò Chơi"/>
+                <p class="changeable">${content}</p>
+            </div>
+    `;
+    </script>
 
     <!-- Link FireBase -->
     <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app-compat.js"></script>
@@ -106,24 +131,6 @@
 </body>
 
 <script>
-    // Lấy các tham số truy vấn
-    const queryParams = new URLSearchParams(window.location.search);
-    const gameId = queryParams.get('id');
-    const author = queryParams.get('author');
-    const imgPath = queryParams.get('imgPath');
-    const title = queryParams.get('title');
-
-    // Hiển thị nội dung chi tiết
-    const detailContainer = document.getElementById('detail-container');
-    detailContainer.innerHTML = `
-    <div>
-        <h3 class="changable">Tác Giả: ${author}</h3>
-        <h3>Tiêu Đề: ${title}</h4>
-        <img src="${imgPath}" alt="Hình Ảnh Trò Chơi"/>
-        <!-- Thêm thông tin chi tiết khác ở đây -->
-    </div>
-`;
-
     // Nút dropdown
     const drdown = document.querySelector('#dropdown');
     const menu = document.querySelector('.sub-nav');

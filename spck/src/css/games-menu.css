@@ -1,5 +1,5 @@
 .fr {
-  left: 380px;
+  left: 450px;
   width: 65px;
 }
 
@@ -45,10 +45,23 @@
   min-width: 890px;
 }
 
-.menu-container p {
+.menu-container h3 {
   color: white;
   margin-bottom: 20px;
   text-align: center;
   font-size: 40px;
   font-weight: bold;
+}
+
+.menu-container p {
+  color: white;
+  margin: auto 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+input[type='checkbox'] {
+  width:30px;
+  height:30px;
+  margin: 10px 10px 10px 0px;
 }

@@ -31,17 +31,24 @@
     <div class="container">
 
         <!-- Header -->
-        <header>
+        <header class="h-change">
             <div class="header-logo">
-                <h1>Linia</h1>
+                <img class="dark" src="./src/img/Logo Dark.png" alt="">
+                <img class="light" src="./src/img/Logo Light.png" alt="">
             </div>
             <nav class="navbar header-nav d-flex">
                 <div id="menu" class="head-nav">
-                    <a href="./index.html" class="head-nav-item d-flex">Home</a>
-                    <a href="./contact.html" class="head-nav-item d-flex">Contact</a>
-                    <a href="./games.html" class="head-nav-item d-flex">Games</a>
+                    <a href="./index.html" class="head-nav-item d-flex reverse">Home</a>
+                    <a href="./contact.html" class="head-nav-item d-flex reverse">Contact</a>
+                    <a href="./games.html" class="head-nav-item d-flex reverse">Games</a>
+                    <div class="fr"></div>
                 </div>
             </nav>
+            <!-- Hai hình ảnh cần thay đổi -->
+            <img id="dark" class="change-mode" src="./src/img/Change Light.png" draggable="false" alt="Dark Mode"
+                onclick="switchImages('white')">
+            <img id="light" class="change-mode" src="./src/img/Change Dark.png" draggable="false" alt="Light Mode"
+                onclick="switchImages('black')">
             <div id="sub-list"></div>
         </header>
         <!-- End Header -->
@@ -50,7 +57,7 @@
         <main>
             <div class="game-menu">
                 <div class="container">
-                    <h1>Thêm bài viết: </h1>
+                    <h1>Thêm Game: </h1>
                     <form id="game-form">
                         <label for="game-title">Title</label>
                         <input class="edit" type="text" id="game-title" placeholder="Title...">

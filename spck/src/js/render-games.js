@@ -44,7 +44,7 @@ const fetchGames = () => {
 const renderGames = (games) => {
   const html = games.map((game) => {
     return `
-      <label class="game" data-tags="${game.tags}"  onclick="window.location.href = 'detail.html?id=${game.id}&author=${game.author}&imgPath=${game.imgPath}&title=${game.title}'">
+      <label class="game" data-tags="${game.tags}"  onclick="window.location.href = 'detail.html?id=${game.id}&author=${game.author}&imgPath=${game.imgPath}&title=${game.title}&content=${game.content}'">
         <div>
           <div class="box-zoom">
             <img src="${game.imgPath}" alt="" />
@@ -67,6 +67,7 @@ loadMoreBtn.addEventListener("click", () => {
   fetchGames();
   loadMoreBtn.style.display = "none"; // Ẩn khi ấn xong
 });
+
 // Hiện Tự động điền tag
 function autocomplete(inp, arr) {
   var currentFocus;
@@ -121,14 +122,17 @@ function autocomplete(inp, arr) {
     // Lấy danh sách các mục tự động hoàn thành:
     var x = document.getElementById(this.id + "autocomplete-list");
     if (x) x = x.getElementsByTagName("div");
+    
     // Xử lý khi nhấn phím xuống (Arrow Down keycode = 40):
     if (e.keyCode === 40) {
       currentFocus++;
       addActive(x); // Làm nổi bật mục hiện tại
+
       // Xử lý khi nhấn phím lên (Arrow Up keycode = 38):
     } else if (e.keyCode === 38) {
       currentFocus--;
       addActive(x); // Làm nổi bật mục hiện tại
+
       // Xử lý khi nhấn phím Enter (keycode = 13):
     } else if (e.keyCode === 13) {
       e.preventDefault();
